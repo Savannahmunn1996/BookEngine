@@ -43,7 +43,9 @@ type Auth {
 
   type Mutation {
     addUser(username:String, email:String, password:String): Auth
-
+     saveBook (bookData: saveBookInput):User
+     login(email:String,password:String):Auth
+     removeBook( bookId: ID):User
   }
 `;
 
