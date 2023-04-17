@@ -62,7 +62,7 @@ const resolvers = {
 
                 // update user's book count
                 updatedUser.bookCount = updatedUser.savedBooks.length;
-                await updatedUser.save();
+                await updatedUser;
 
                 // return updated user object
                 return updatedUser;
@@ -71,17 +71,17 @@ const resolvers = {
             }
         },
 
-        removeBook: async (parent, { bookID }) => {
+        removeBook: async (parent, { bookID }, context) => {
             try {
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: bookData } },
+                    { $pull: { savedBooks: bookID } },
                     { new: true }
-                ).depopulate('savedBooks');
+                ).populate('savedBooks');
 
                 // update user's book count
                 updatedUser.bookCount = updatedUser.savedBooks.length;
-                await updatedUser.save();
+                await updatedUser;
 
                 // return updated user object
                 return updatedUser;
