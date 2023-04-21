@@ -48,9 +48,13 @@ const resolvers = {
             }
 
             try {
-                // create new book object
-
-                // save book to database
+                const newBook = new Book({
+                    ...book,
+                    userId: context.user._id 
+                  });
+          
+                 
+                  const savedBook = await newBook.save();
 
 
                 // add saved book to user's savedBooks array
