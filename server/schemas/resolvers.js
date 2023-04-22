@@ -52,8 +52,8 @@ const resolvers = {
                 //     ...book,
                 //     userId: context.user._id 
                 //   });
-          
-                 
+
+
                 //   const savedBook = await newBook.save();
 
 
@@ -79,7 +79,7 @@ const resolvers = {
             try {
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: bookId } },
+                    { $pull: { savedBooks: { bookId } } },
                     { new: true }
                 ).populate('savedBooks');
 
